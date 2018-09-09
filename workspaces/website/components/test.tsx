@@ -1,9 +1,9 @@
-import Syncano from '@syncano/client'
-import { Store } from '@website/types'
-import * as api from '@website/types/api'
-import { Coin } from '@website/types/coins'
-import { CoinStore } from '@website/types/coins-store'
-import { inject, observer } from 'mobx-react'
+import Syncano from "@syncano/client"
+import {Store} from "@website/types";
+import * as api from "@website/types/api";
+import {Coin} from "@website/types/coins";
+import {CoinStore} from '@website/types/coins-store';
+import {inject, observer} from 'mobx-react';
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 
@@ -14,21 +14,11 @@ import * as Router from 'react-router-dom'
 @inject('store')
 @observer
 export class Test extends React.Component<{
-  store?: Store
-  data: Coin
+  store?: Store;
+  data: Coin;
 }> {
-  // export class Test extends React.Component<Props>  {
-  //   constructor(props: any) {
-  //     super(props)
-  //     this.state = {
-  //     }
-  //   }
-
   async componentDidMount() {
-    await this.props.store.coinStore.getCoins().then(data => {
-      // console.log('data' data)
-    }
-    )
+    await this.props.store.coinStore.getCoins()
   }
   // componentDidMount() {
   //   const s = new Syncano('delicate-snowflake-6675')
@@ -41,15 +31,13 @@ export class Test extends React.Component<{
   // }
 
   render() {
-    // const article = this.props.store.coinStore.coins[Target][0].value.id
-    const article = this.props.store.coinStore.coins
-    console.log('article', article)
+    // const coins = this.props.store.coinStore.coinList
+    const coins = this.props.store.coinStore.coinList
+    console.log('coins', coins[0])
+    // const test = coins.filter()
+    // tslint:disable-next-line:jsx-wrap-multiline
+    const a = coins[0]
 
-    return (
-      <div>
-        {{ article[0] }}
-        asd
-      </div>
-    )
+    return <div>asd</div>
   }
 }
