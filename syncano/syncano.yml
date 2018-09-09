@@ -1,5 +1,4 @@
-hosting:
-  website:
-    src: ../.build/website
-    config:
-      browser_router: true
+dependencies:
+  sockets:
+    coinmarketcap:
+      version: 0.0.3

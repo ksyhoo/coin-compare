@@ -1,15 +1,16 @@
-import {Router} from '@reach/router'
-import {SENTRY_URL, UI} from '@shared/config'
-import {createStore} from '@shared/utils/create-store'
-import {loadable} from '@shared/utils/loadable'
+import { Router } from '@reach/router'
+import { SENTRY_URL, UI } from '@shared/config'
+import { createStore } from '@shared/utils/create-store'
+import { loadable } from '@shared/utils/loadable'
 import '@shared/utils/normalize'
-import {ThemeProvider} from '@shared/utils/styled'
-import {Modals} from '@website/components'
+import { ThemeProvider } from '@shared/utils/styled'
+import { Modals } from '@website/components'
 import '@website/styles'
-import {Store} from '@website/types'
-import {observer, Provider} from 'mobx-react'
+import { Store } from '@website/types'
+import { observer, Provider } from 'mobx-react'
+import DevTools from 'mobx-react-devtools'
 import * as React from 'react'
-import {hot} from 'react-hot-loader'
+import { hot } from 'react-hot-loader'
 import RedBox from 'redbox-react'
 
 const routes = getRoutes()
@@ -21,7 +22,7 @@ export class App extends React.Component<{}, {
 }> {
   constructor(props: any) {
     super(props)
-    this.state = {error: null}
+    this.state = { error: null }
   }
   componentDidMount() {
     if (SENTRY_URL) {
@@ -29,7 +30,7 @@ export class App extends React.Component<{}, {
     }
   }
   componentDidCatch(error: any) {
-    this.setState({error})
+    this.setState({ error })
   }
   render() {
     if (this.state.error) {
@@ -58,10 +59,10 @@ export class App extends React.Component<{}, {
 
 function getRoutes() {
   return {
-    Index:  loadable(() => import('@website/pages/landing')),
+    Index: loadable(() => import('@website/pages/landing')),
     Missing: loadable(() => import('@website/pages/missing')),
     Auth: {
-      Login:  loadable(() => import('@website/pages/auth/login')),
+      Login: loadable(() => import('@website/pages/auth/login')),
       Logout: loadable(() => import('@website/pages/auth/logout')),
       Register: loadable(() => import('./pages/auth/register')),
     },

@@ -223,9 +223,9 @@
     watchr "^4.0.1"
     ws "^4.0.0"
 
-"@syncano/client@0.13.0-alpha.4d352111":
-  version "0.13.0-alpha.4d352111"
-  resolved "https://registry.yarnpkg.com/@syncano/client/-/client-0.13.0-alpha.4d352111.tgz#f32d764db30a85d905e6aa5ed8f9a59d59fa81b5"
+"@syncano/client@^0.13.0-alpha.4d352111":
+  version "0.13.0-alpha.f7fbe757"
+  resolved "https://registry.yarnpkg.com/@syncano/client/-/client-0.13.0-alpha.f7fbe757.tgz#05e79dd536c1701da199993a6ab4be1f63c39ea5"
   dependencies:
     axios "0.18.0"
 

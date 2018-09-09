@@ -1,9 +1,10 @@
-import {FormStore} from '@shared/types/form-store'
-import {LangStore} from '@shared/types/lang-store'
-import {UserStore} from '@shared/types/user-store'
-import {Modal} from '@website/types/modal'
-import {types} from 'mobx-state-tree'
-import {hot} from 'react-hot-loader'
+import { FormStore } from '@shared/types/form-store'
+import { LangStore } from '@shared/types/lang-store'
+import { UserStore } from '@shared/types/user-store'
+import { CoinStore } from '@website/types/coins-store'
+import { Modal } from '@website/types/modal'
+import { types } from 'mobx-state-tree'
+import { hot } from 'react-hot-loader'
 
 export const Store = hot(module)(types
   .model('Store', {
@@ -11,6 +12,7 @@ export const Store = hot(module)(types
     langStore: types.optional(LangStore, {}),
     userStore: types.optional(UserStore, {}),
     formStore: types.optional(FormStore, {}),
+    coinStore: types.optional(CoinStore, {}),
   }))
   .views(self => ({
     get t() {
@@ -19,4 +21,4 @@ export const Store = hot(module)(types
   }))
 
 type StoreType = typeof Store.Type
-export interface Store extends StoreType {}
+export interface Store extends StoreType { }
