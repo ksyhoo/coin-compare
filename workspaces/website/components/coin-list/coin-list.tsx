@@ -2,7 +2,7 @@ import {CoinListStyled, Wrapper} from '@website/components/coin-list/styled'
 import {CoinItem} from '@website/components/coin/coin'
 import {Store} from '@website/types'
 import {Coin} from '@website/types/coins'
-import {inject, observer} from 'mobx-react'
+import {computed, inject, observer, observable} from 'mobx-react'
 import * as React from 'react'
 
 @inject('store')
@@ -18,16 +18,22 @@ export class CoinList extends React.Component<{
 
   async componentDidMount() {
     await this.props.store.coinStore.getCoins()
+    // await setInterval(() => this.props.store.coinStore.getCoins(), 500)
+
   }
+  componentWillUnmount() {
+    clearInterval()
+  }
+  // @computed get data() {
+  //   return this.props.store.coinStore.getCoins()
+  // }
 
   handleClick = (event) => {
     console.log(event.target.parentNode)
-    // alert(event.target.innerHTML)
     alert(event.target.parentNode.firstChild.innerHTML)
   }
 
   render() {
-
     const coins = this.props.store.coinStore.coinList
     console.log(coins)
     if (coins) {
