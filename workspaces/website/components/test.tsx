@@ -1,9 +1,9 @@
-import Syncano from "@syncano/client"
-import {Store} from "@website/types";
-import * as api from "@website/types/api";
-import {Coin} from "@website/types/coins";
-import {CoinStore} from '@website/types/coins-store';
-import {inject, observer} from 'mobx-react';
+import Syncano from '@syncano/client'
+import {Store} from '@website/types'
+import * as api from '@website/types/api'
+import {Coin} from '@website/types/coins'
+import {CoinStore} from '@website/types/coins-store'
+import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import * as Router from 'react-router-dom'
 
@@ -19,6 +19,10 @@ export class Test extends React.Component<{
 }> {
   async componentDidMount() {
     await this.props.store.coinStore.getCoins()
+    // const coins = this.props.store.coinStore
+
+    // console.log('coins', coins)
+
   }
   // componentDidMount() {
   //   const s = new Syncano('delicate-snowflake-6675')
@@ -31,13 +35,28 @@ export class Test extends React.Component<{
   // }
 
   render() {
-    // const coins = this.props.store.coinStore.coinList
     const coins = this.props.store.coinStore.coinList
-    console.log('coins', coins[0])
-    // const test = coins.filter()
-    // tslint:disable-next-line:jsx-wrap-multiline
-    const a = coins[0]
+    console.log('coins in view', coins)
 
-    return <div>asd</div>
+    if (coins) {
+      return (
+        <div>
+          <p>sa coiny </p>
+          <ul>
+            {coins.map((coinName, key) => {
+              return <li key={key}>{coinName.name}</li>
+
+            })}
+
+          </ul>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        nie ma coinow
+    </div>
+    )
   }
 }

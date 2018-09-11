@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree'
+import {types} from 'mobx-state-tree'
 
 export const Coin = types
   .model('Coin', {
@@ -34,4 +34,4 @@ export const Coin = types
   }))
 
 type CoinType = typeof Coin.Type
-export interface Coin extends CoinType { }
+export interface Coin extends CoinType {}
