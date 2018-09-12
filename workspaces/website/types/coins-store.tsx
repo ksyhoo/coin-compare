@@ -6,24 +6,24 @@ import {flow, types} from 'mobx-state-tree'
 export const CoinStore = types
   .model('CoinStore', {
     coins: types.optional(types.array(Coin), []),
-    // coins: types.optional(types.array(types.string), []),
 
   })
   .views(self => ({
     get coinList() {
-      // return self.coins.find(item => item === 'Bitcon')
       return self.coins.map((data) => {
         return data
       })
+    },
+    showCoinDetails(id: string) {
+      return self.coins.find(coin => coin.symbol === id)
     },
   }))
   .actions(self => ({
     getCoins: flow(function* () {
       const coins = yield api.coin.listCoins()
-      coins.data.forEach(element => {
-        self.coins.push(element)
-      })
+      self.coins.replace(coins.data)
     }),
+
   }))
 // .actions(self => ({
 //   getCoins: flow(function* () {

@@ -2,12 +2,13 @@ import {Item, Wrapper} from '@website/components/coin/styled'
 import {Coin} from '@website/types/coins'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import {computed, inject, observable, observer} from 'mobx-react'
 
 interface Props {
   data: Coin
   item: Object
 }
-
+@observer
 export class CoinItem extends Component<Props> {
   constructor(props: any) {
     super(props)
@@ -15,7 +16,7 @@ export class CoinItem extends Component<Props> {
 
   render() {
     const data = this.props
-    console.log(this.props)
+    // console.log(this.props)
 
     return (
       <Wrapper>

@@ -1,8 +1,9 @@
+import {CoinDetails} from '@website/components/coin-details/coin-details'
 import {CoinListStyled, Wrapper} from '@website/components/coin-list/styled'
 import {CoinItem} from '@website/components/coin/coin'
 import {Store} from '@website/types'
 import {Coin} from '@website/types/coins'
-import {computed, inject, observer, observable} from 'mobx-react'
+import {computed, inject, observable, observer} from 'mobx-react'
 import * as React from 'react'
 
 @inject('store')
@@ -10,45 +11,43 @@ import * as React from 'react'
 export class CoinList extends React.Component<{
   store?: Store;
   data: Coin;
+  coinDetailsOnClick: {};
 }> {
-  // constructor(props: any) {
-  //   super(props)
-  //   this.handleClick = this.handleClick.bind(this)
-  // }
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      coinDetailsOnClick: {},
+    }
+  }
 
   async componentDidMount() {
     await this.props.store.coinStore.getCoins()
-    // await setInterval(() => this.props.store.coinStore.getCoins(), 500)
-
+    // setInterval(async () => await this.props.store.coinStore.getCoins(), 5000)
   }
   componentWillUnmount() {
     clearInterval()
   }
-  // @computed get data() {
-  //   return this.props.store.coinStore.getCoins()
-  // }
 
   handleClick = (event) => {
-    console.log(event.target.parentNode)
-    alert(event.target.parentNode.firstChild.innerHTML)
+    // alert(event.target.parentNode.firstChild.innerHTML)
+    const coinDetails = this.props.store.coinStore.showCoinDetails(event.target.parentNode.firstChild.innerHTML)
+    this.setState({
+      coinDetailsOnClick: coinDetails,
+    })
   }
 
   render() {
     const coins = this.props.store.coinStore.coinList
-    console.log(coins)
     if (coins) {
       return (
         <Wrapper >
+          <CoinDetails data={this.state.coinDetailsOnClick} />
           <CoinListStyled>
-            <p>sa coiny </p>
-            {/* <ul> */}
             {coins.map((coin, key) => {
-              // return <li key={key}>{coin.name}</li>
               return <div key={key} onClick={this.handleClick}>
                 <CoinItem data={coin} />
               </div>
             })}
-            {/* </ul> */}
           </CoinListStyled>
         </Wrapper>
       )
