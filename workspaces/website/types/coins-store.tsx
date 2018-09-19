@@ -14,9 +14,10 @@ export const CoinStore = types
         return data
       })
     },
-    showCoinDetails(id: string) {
-      return self.coins.find(coin => coin.symbol === id)
+    showCoinDetails(symbol: string) {
+      return self.coins.find(coin => coin.symbol === symbol)
     },
+
   }))
   .actions(self => ({
     getCoins: flow(function* () {

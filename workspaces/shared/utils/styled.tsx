@@ -70,6 +70,7 @@ export interface Theme {
     default: Color
     meta: Color
     icon: Color
+    white: Color
   }
   letterSpacing: {
     tracked: string

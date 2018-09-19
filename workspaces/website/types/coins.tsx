@@ -22,16 +22,16 @@ export const Coin = types
   //   name: 'test coin',
 
   // })
-  .views(self => ({
-    // get url() {
-    //   return {
-    //     single: `/article/${self.id}`,
-    //   }
-    // },
-  }))
-  .actions(self => ({
+  // .views(self => ({
+  //   get url() {
+  //     return {
+  //       single: `/article/${self.id}`,
+  //     }
+  //   },
+  // }))
+  // .actions(self => ({
 
-  }))
+  // }))
 
 type CoinType = typeof Coin.Type
 export interface Coin extends CoinType {}
